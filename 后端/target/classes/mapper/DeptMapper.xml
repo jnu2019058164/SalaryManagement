@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.j2ee.mapper.DeptMapper">
+    <!--    一个一对多映射-->
+<!--    本想一对多对一，但是实现起来太绕了脑子转不过弯还是这样好了-->
+    <select id="SearchDept"  parameterType="java.lang.String" resultMap="Dept4BOSS">
+        select DEPT.DEPTID,DEPT.DEPTNAME,POS.POSID,POS.POSNAME,BSAL.BASESAL as BASESAL ,SAL.SALID,SAL.SALNAME,SAL.SALUNIT,SAL.UNITVAL  from DEPT,POS,BSAL,SAL where DEPT.DEPTNAME like #{xxx} and DEPT.DEPTID=POS.DEPTID and POS.POSID=BSAL.POSID and POS.POSID=SAL.POSID
+    </select>
+    <resultMap id="Dept4BOSS" type="com.j2ee.entity.Dept4Boss">
+        <id property="deptid" column="DEPTID"></id>
+        <result property="deptname" column="DEPTNAME"></result>
+        <collection property="deptPos" ofType="com.j2ee.entity.Pos" resultMap="DPSal"></collection>
+    </resultMap>
+<!--    多层嵌套，用于给Pos实体中的Sal实体赋值-->
+    <resultMap id="DPSal" type="com.j2ee.entity.Pos">
+        <id property="posid" column="POSID"></id>
+        <result property="deptid" column="DEPTID"></result>
+        <result property="posname" column="POSNAME"></result>
+        <result property="basesal" column="BASESAL"></result>
+<!--        报错不要管，直接忽略，能动就行-->
+        <association property="PosSal" javaType="com.j2ee.entity.Sal">
+            <id property="salid" column="SALID"></id>
+            <result property="salname" column="SALNAME"></result>
+            <result property="salunit" column="SALUNIT"></result>
+            <result property="unitval" column="UNITVAL"></result>
+            <result property="posid" column="POSID"></result>
+        </association>
+    </resultMap>
+</mapper>

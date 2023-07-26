@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.j2ee.mapper.SalunitMapper">
+
+    <select id="SearchSUnit" resultType="com.j2ee.entity.Salunit" parameterType="java.lang.String" resultMap="SUnit">
+        select SAL.SALID,STF.STFID,STF.STFNAME,SALWT,SALNAME,SALUNIT,UNITVAL,SAL.POSID from SALUNIT,STF,SAL where SALUNIT.STFID=STF.STFID and SALUNIT.SALID=SAL.SALID and STF.STFNAME like #{xxx}
+    </select>
+    <resultMap id="SUnit" type="com.j2ee.entity.Salunit">
+        <id property="salid" column="SALID"></id>
+        <result property="salwt" column="SALWT"></result>
+        <result property="stfname" column="STFNAME"></result>
+        <result property="stfid" column="STFID"></result>
+        <association property="sal" javaType="com.j2ee.entity.Sal">
+            <id property="salid" column="SALID"></id>
+            <result property="salname" column="SALNAME"></result>
+            <result property="salunit" column="SALUNIT"></result>
+            <result property="unitval" column="UNITVAL"></result>
+            <result property="posid" column="POSID"></result>
+        </association>
+    </resultMap>
+</mapper>

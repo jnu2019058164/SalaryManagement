@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.j2ee.mapper.SalaryMapper">
+
+    <select id="test" resultMap="Sal4All">
+        select stf.stfname, dept.deptname , pos.posname ,salary(stf.stfid) as sal_sum from stf,pos,dept where stf.posid = pos.posid and pos.deptid = dept.deptid
+
+    </select>
+    <resultMap id="Sal4All" type="com.j2ee.entity.Salary">
+        <result property="stfname" column="stfname"></result>
+        <result property="posname" column="posname"></result>
+        <result property="deptname" column="deptname"></result>
+        <result property="salary" column="sal_sum"></result>
+    </resultMap>
+</mapper>

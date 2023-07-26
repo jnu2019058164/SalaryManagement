@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="项目整合version1.0" />
+        <module name="项目整合后端version1.0" />
+        <module name="后端_version_2.0" />
+        <module name="j2ee后端" />
+        <module name="j2ee项目" />
+        <module name="PropertyManageSystemDemo" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PropertyManageSystemDemo" options="-parameters" />
+      <module name="j2ee后端" options="-parameters" />
+      <module name="j2ee项目" options="-parameters" />
+      <module name="后端_version_2.0" options="-parameters" />
+      <module name="项目整合version1.0" options="-parameters" />
+      <module name="项目整合后端version1.0" options="-parameters" />
+    </option>
+  </component>
+</project>

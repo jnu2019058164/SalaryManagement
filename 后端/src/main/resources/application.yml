@@ -1,0 +1,29 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /j2ee
+
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@127.0.0.1:1521/SalManagement
+    username: system #这里写上数据库用户名
+    password: 1234 #这里写上数据库密码
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid数据源配置
+    druid:
+      max-active: 20
+      min-idle: 5
+      initial-size: 20
+#mybatis-plus的配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+  mapper-locations: mapper/*.xml
+
+#日志配置
+logging:
+  level:
+    root: info
+    com.neu.mapper : debug
